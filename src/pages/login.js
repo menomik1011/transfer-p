@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
+import { useAuth } from "../context/auth";
 
 const LoginBlock = styled.div`
   width: 350px;
@@ -67,6 +68,7 @@ export default function Login() {
   const router = useRouter();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const auth = useAuth();
 
   function login(e) {
     e.preventDefault();
@@ -89,6 +91,7 @@ export default function Login() {
       .then((data) => {
         if (data.messege === "ok") {
           router.push("/");
+          auth.login(id);
         } else {
           alert(data.messege);
           router.push("login");

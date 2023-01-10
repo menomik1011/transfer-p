@@ -111,5 +111,8 @@ body{
   background-color: aliceblue;
 }
 .container{
+  padding: 6rem 3rem;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

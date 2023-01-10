@@ -87,10 +87,10 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message === "ok") {
+        if (data.messege === "ok") {
           router.push("/");
         } else {
-          alert(data.message);
+          alert(data.messege);
           router.push("login");
         }
       });

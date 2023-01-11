@@ -7,7 +7,7 @@ export default (req, res) => {
       res.statusCode = 200;
       res.json({ messege: "ok" });
     } else {
-      res.statusCode = 401;
+      res.statusCode = 400;
       res.json({ messege: "아이디 또는 비밀번호가 일치하지 않습니다." });
     }
   }

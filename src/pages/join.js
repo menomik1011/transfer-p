@@ -90,7 +90,7 @@ export default function Join() {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.state === 500) {
+          if (data.state === 400) {
             alert(data.messege);
             router.push("/join");
           } else {

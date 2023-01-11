@@ -4,8 +4,24 @@ import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import { useAuth } from "../context/auth";
 import Link from "next/link";
+import styled from "styled-components";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const AdminBtn = styled.div`
+  display: flex;
+  font-size: 1rem;
+  align-items: center;
+  button {
+    color: blue;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+`;
 
 export default function Home() {
   const auth = useAuth();
@@ -19,14 +35,25 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
+          
           <p>
-            Get started by editing&nbsp;
+          <Image
+            className={styles.logo}
+            src="/next.svg"
+            alt="Next.js Logo"
+            width={100}
+            height={24}
+            priority
+          />
+            &nbsp;&nbsp;&nbsp;Get started by editing&nbsp;
             <code className={styles.code}>pages/index.js</code>
           </p>
-          <div style={{ display: "flex" }}>
-            <div style={{marginRight:'16px'}}>
+          <AdminBtn>
+            <div style={{ marginRight: "16px" }}>
               {auth.user === "" ? (
-                <Link href={"/login"}>login</Link>
+                <Link href={"/login"}>
+                  <button>Sign in</button>
+                </Link>
               ) : (
                 <button onClick={auth.logout}>logout</button>
               )}
@@ -46,27 +73,7 @@ export default function Home() {
                 priority
               />
             </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
+          </AdminBtn>
         </div>
 
         <div className={styles.grid}>

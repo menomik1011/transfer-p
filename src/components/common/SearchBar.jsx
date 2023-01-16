@@ -21,7 +21,9 @@ const SearchBarBlock = styled.div`
     }
 `
 
-export default function SearchBar() {
+export default function SearchBar({fallback}) {
+    console.log(fallback);
+    // const list = useUserList()
     return (
         <SearchBarBlock>
             <form>
@@ -30,4 +32,21 @@ export default function SearchBar() {
             </form>
         </SearchBarBlock>
     )
+}
+
+
+export async function getServerSideProps(){
+    // const response = await fetch('http://localhost:4004/api/dashboard/user-list');
+    // const response = await fetch('/api/dashboard/user-list');
+    // console.log(response);
+    // const data = await response.json();
+    const list = await getArti
+
+    return {
+        props:{
+            fallback:{
+                list: data
+            }
+        }
+    }
 }

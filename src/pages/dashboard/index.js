@@ -1,5 +1,10 @@
+import SearchBar from "../../components/common/SearchBar";
+
 export default function DashboardHome(){
     return (
-        <div>DashboardHome</div>
+        <div>
+            <SearchBar />
+            <div>DashboardHome</div>
+        </div>
     )
 }

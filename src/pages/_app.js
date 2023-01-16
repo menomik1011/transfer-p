@@ -1,4 +1,3 @@
-import { AuthProvider } from "../context/auth";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import Nav from "../components/common/Nav";
@@ -8,7 +7,6 @@ import Link from "next/link";
 
 export default function App({ Component, pageProps }) {
   return (
-    <AuthProvider>
       <div className="container">
         <div className={styles.description}>
           <p>
@@ -47,6 +45,5 @@ export default function App({ Component, pageProps }) {
         <Nav />
         <Component {...pageProps} />
       </div>
-    </AuthProvider>
   );
 }

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../context/auth";
+import { useUser } from "../lib/hooks";
 
 const LoginBlock = styled.div`
   width: 350px;
@@ -66,37 +67,38 @@ const LoginBtn = styled.button`
 
 export default function Login() {
   const router = useRouter();
+  useUser({ redirectTo: "/", redirectIfFound: true });
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const auth = useAuth();
 
-  function login(e) {
+  async function login(e) {
     e.preventDefault();
     const loginData = {
       id,
       password,
     };
-    fetch("/api/login", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      referrerPolicy: "no-referrer",
-      body: JSON.stringify(loginData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.messege === "ok") {
-          router.push("/");
-          auth.login(id);
-        } else {
-          alert(data.messege);
-          router.push("login");
-        }
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(loginData),
       });
+      if (res.status === 200) {
+        router.push("/");
+      } else {
+        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        throw new Error(await res.text());
+      }
+    } catch (error) {
+      console.error("An unexpected error happened occurred:", error);
+    }
   }
   return (
     <LoginBlock>

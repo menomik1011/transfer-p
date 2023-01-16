@@ -1,4 +1,4 @@
 export default (req, res) => {
     res.statusCode = 200;
-    res.json({ name: req.cookies.u_n });
+    res.json({ user: req.cookies.u_n });
   };

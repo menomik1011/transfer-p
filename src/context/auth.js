@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState("");
+
   const router = useRouter();
 
   function login(userId) {

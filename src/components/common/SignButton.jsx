@@ -1,17 +1,17 @@
 import Link from 'next/link'
 import React from 'react'
-import { useAuth } from '../../context/auth';
+import { useUser } from '../../lib/hooks';
 
 export default function SignButton() {
-  const auth = useAuth();
+  const user = useUser();
   return (
     <div style={{ marginRight: "16px" }}>
-      {auth.user === "" ? (
+      {user ? (
+        <Link href={"/api/logout"}><button>logout</button></Link>
+      ) : (
         <Link href={"/login"}>
           <button>Sign in</button>
         </Link>
-      ) : (
-        <button onClick={auth.logout}>logout</button>
       )}
     </div>
   )

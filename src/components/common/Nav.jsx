@@ -34,8 +34,8 @@ const menuData = [
 
 export default function Nav() {
     const user = useUser();
-    if (!user) return null;
     const router = useRouter();
+    if (!user) return null;
     return (
         <Navblock>
             <ul>

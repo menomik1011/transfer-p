@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import { useAuth } from "../context/auth";
 import { useUser } from "../lib/hooks";
 
 const LoginBlock = styled.div`
@@ -66,11 +65,10 @@ const LoginBtn = styled.button`
 `;
 
 export default function Login() {
-  const router = useRouter();
   useUser({ redirectTo: "/", redirectIfFound: true });
+  const router = useRouter();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const auth = useAuth();
 
   async function login(e) {
     e.preventDefault();

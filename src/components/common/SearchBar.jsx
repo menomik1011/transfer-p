@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useUserList } from '../../lib/dashboard-hooks';
 
 const SearchBarBlock = styled.div`
     padding: 8px 16px;
@@ -21,9 +22,10 @@ const SearchBarBlock = styled.div`
     }
 `
 
-export default function SearchBar({fallback}) {
-    console.log(fallback);
-    // const list = useUserList()
+export default function SearchBar() {
+    // console.log(list);
+    const {list, isError} = useUserList();
+    console.log(list);
     return (
         <SearchBarBlock>
             <form>
@@ -35,18 +37,19 @@ export default function SearchBar({fallback}) {
 }
 
 
-export async function getServerSideProps(){
-    // const response = await fetch('http://localhost:4004/api/dashboard/user-list');
-    // const response = await fetch('/api/dashboard/user-list');
-    // console.log(response);
-    // const data = await response.json();
-    const list = await getArti
+// export async function getServerSideProps(){
+//     // const response = await fetch('http://localhost:4004/api/dashboard/user-list');
+//     const response = await fetch('/api/dashboard/user-list');
+//     // console.log(response);
+//     const list = await response.json();
+//     // const list = await getArti
 
-    return {
-        props:{
-            fallback:{
-                list: data
-            }
-        }
-    }
-}
+//     return {
+//         props:{
+//             list
+//             // fallback:{
+//             //     list: data
+//             // }
+//         }
+//     }
+// }
